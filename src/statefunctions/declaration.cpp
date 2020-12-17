@@ -17,7 +17,9 @@ auto sWar::Declaration(GameState& state) -> GameState& {
     state.hands.at(victor).clear();
     if (state.decks.at(victor).size() < 2) {
       state.casualties.push_back(victor);
-      continue;
+      if (state.decks.at(victor).empty()) {
+        continue;
+      }
     }
     state.table.insert(
       state.table.begin(),

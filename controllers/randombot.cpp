@@ -1,11 +1,11 @@
-#include "lowbot.h"
+#include "randombot.h"
 
 #include <card.h>
 #include <event.h>
 
 #include <algorithm>
 
-auto LowBot::ReceiveEvent(Event e) -> void {
+auto RandomBot::ReceiveEvent(Event e) -> void {
   switch (e.type) {
     case Event::GameStart:
       hand.insert(hand.begin(), e.cards.begin(), e.cards.end());
@@ -25,22 +25,17 @@ auto LowBot::ReceiveEvent(Event e) -> void {
   }
 }
 
-auto LowBot::RetrieveCard() -> Card {
-  return BottomCard();
+auto RandomBot::RetrieveCard() -> Card {
+  return RandomCard();
 }
 
-auto LowBot::BottomCard() -> Card {
+auto RandomBot::RandomCard() -> Card {
   if (hand.empty()) {
     // We can try lmao
     return Card(Card::ACE_OF_SPADES);
   }
-  Card lowest = hand.front();
-  for (const auto& card : hand) {
-    if (card.getCardNum() < lowest.getCardNum()) {
-      lowest = card;
-    }
-  }
+  Card random = hand.front();
   hand.erase(
-    std::find(hand.begin(), hand.end(), lowest));
-  return lowest;
+    std::find(hand.begin(), hand.end(), random));
+  return random;
 }

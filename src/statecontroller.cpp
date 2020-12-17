@@ -40,6 +40,7 @@ auto sWar::StateController(const GameSettings& settings) -> void {
   int id = threadIndex++;
   shouldHalt[id] = false;
 
+  state.handsize = settings.handsize;
   state.deckCnt = settings.deckCnt;
   state.playerCnt = static_cast<size_t>(settings.seatControllers.size());
   state.shuffleWinnings = settings.shuffleWinnings;
