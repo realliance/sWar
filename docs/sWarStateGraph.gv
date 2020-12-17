@@ -1,0 +1,25 @@
+digraph sWar {
+  GameStart [rank=source]
+  GameEnd [rank=sink]
+  rankdir=LR
+
+  GameStart -> Battle
+
+  Battle -> Collect
+  Battle -> Declaration
+
+  Collect -> Draw
+  
+  Draw -> GameEnd
+  Draw -> Battle
+
+  Declaration -> Surrender
+  Declaration -> Regroup
+
+  Surrender -> GameEnd
+
+  Regroup -> Duel
+
+  Duel -> Collect
+  Duel -> Declaration
+}

@@ -1,0 +1,1 @@
+We only use libosmium's .clang-tidy configuration file as it was nice starting point for our clang-tidy config. I'm not sure if the .clang-tidy file is covered under the license, but it can't hurt to add it.
