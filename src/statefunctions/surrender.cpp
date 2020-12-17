@@ -1,23 +1,19 @@
-#include <stddef.h>
-
 #include <algorithm>
 #include <deque>
-#include <memory>
+#include <iterator>
 #include <vector>
 
 #include "card.h"
-#include "event.h"
 #include "gamestate.h"
-#include "playercontroller.h"
 #include "statefunctions.h"
 
 auto sWar::Surrender(GameState& state) -> GameState& {
-  int winnings = state.table.size() / (state.victors.size() - state.casualties.size());
+  int winnings = state.table.size() / (state.victors.size());
   for (const auto& victor : state.victors) {
     std::move(
       state.table.begin(),
       state.table.begin() + winnings,
-      std::back_inserter(state.playerdecks.at(victor)));
+      std::back_inserter(state.decks.at(victor)));
     state.table.erase(
       state.table.begin(),
       state.table.begin() + winnings);

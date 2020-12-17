@@ -25,7 +25,7 @@ auto main() -> int {
   }, "LowBot");
 
   sWar::StartGame(GameSettings{
-    /* seatControllers: */ {},
+    /* seatControllers: */ {"ViewerHighBot","LowBot"},
     /* seed: */ 0,
     /* decks: */ 1,
     /* handsize: */ 3,

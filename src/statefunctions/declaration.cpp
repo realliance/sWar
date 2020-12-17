@@ -10,20 +10,19 @@
 
 auto sWar::Declaration(GameState& state) -> GameState& {
   for (const auto& victor : state.victors) {
-    std::vector<Card> soldiers;
-    soldiers.insert(
-      soldiers.begin(),
+    state.table.insert(
+      state.table.begin(),
       state.hands.at(victor).begin(),
       state.hands.at(victor).end());
     state.hands.at(victor).clear();
-    if (state.playerdecks.at(victor).empty()) {
+    if (state.decks.at(victor).size() < 2) {
       state.casualties.push_back(victor);
       continue;
     }
-    soldiers.insert(
-      soldiers.begin(),
-      state.playerdecks.at(victor).front());
-    state.playerdecks.at(victor).pop_front();
+    state.table.insert(
+      state.table.begin(),
+      state.decks.at(victor).front());
+    state.decks.at(victor).pop_front();
   }
   for (const auto& casuality : state.casualties) {
     state.victors.erase(
@@ -38,7 +37,7 @@ auto sWar::Declaration(GameState& state) -> GameState& {
         /*cardCnt: */ 0,
         /*players: */ state.victors,
         /*cards: */ {},
-        /*remainingCards: */ static_cast<int>(state.playerdecks.at(i).size())});
+        /*remainingCards: */ static_cast<int>(state.decks.at(i).size())});
   }
 
   if (!state.casualties.empty()) {

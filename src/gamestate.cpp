@@ -1,16 +1,39 @@
 #include "gamestate.h"
 
+#include <map>
 #include <string>
 
 #include "playercontroller.h"
+#include "statefunctions.h"
 
-using sWar::GameState;
+using sWar::GameState, sWar::StateFunction;
+
+const std::map<StateFunction, std::string> FUNCMAP = {
+  {sWar::GameStart, "GameStart"},
+  {sWar::Battle, "Battle"},
+  {sWar::Declaration, "Declaration"},
+  {sWar::Regroup, "Regroup"},
+  {sWar::Duel, "Duel"},
+  {sWar::Surrender, "Surrender"},
+  {sWar::Collect, "Collect"},
+  {sWar::Draw, "Draw"},
+  {sWar::GameEnd, "GameEnd"}};
+
+auto stateFunctionToStr(StateFunction func) -> std::string {
+  if (FUNCMAP.contains(func)) {
+    return FUNCMAP.at(func);
+  }
+  return "UNKNOWN STATE";
+}
 
 auto operator<<(std::ostream& os, const GameState& state) -> std::ostream& {
-  os << "decks: " << state.decks << std::endl;
+  os << "decks: " << state.deckCnt << std::endl;
   os << "handsize: " << state.handsize << std::endl;
   os << "shuffleWinnings: " << (state.shuffleWinnings ? "true" : "false") << std::endl;
   os << "seed: " << state.seed << std::endl;
+  os << "prevState: " << stateFunctionToStr(state.prevState) << std::endl;
+  os << "currState: " << stateFunctionToStr(state.currState) << std::endl;
+  os << "nextState: " << stateFunctionToStr(state.nextState) << std::endl;
   os << "victors: [" << std::endl;
   for (const auto& victor : state.victors) {
     os << victor << ", ";
@@ -28,7 +51,7 @@ auto operator<<(std::ostream& os, const GameState& state) -> std::ostream& {
   }
   os << "player decks: " << std::endl;
   i = 0;
-  for (const auto& hand : state.playerdecks) {
+  for (const auto& hand : state.decks) {
     os << "deck[" << i << "]: {";
     for (const auto card : hand) {
       os << card.toStr() << ", ";
@@ -36,13 +59,12 @@ auto operator<<(std::ostream& os, const GameState& state) -> std::ostream& {
     os << "}" << std::endl;
     i++;
   }
-  os << "players: " << std::endl;
   i = 0;
   for (const auto& player : state.players) {
     os << "player[" << i << "]: "
        << "{ controller: ";
     os << ((player != nullptr) ? player->Name() : "NULLPTR");
-    os << std::endl;
+    os << "}" << std::endl;
     i++;
   }
   os << "table: {";

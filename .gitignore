@@ -66,3 +66,4 @@ build/
 vgcore.*
 callgrind.out.*
 *.svg
+*.txt

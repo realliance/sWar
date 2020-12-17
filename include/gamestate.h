@@ -11,7 +11,7 @@ namespace sWar {
 class PlayerController;
 
 struct GameState {
-  int decks = 1;
+  int deckCnt = 1;
   int handsize = 3;
   int playerCnt = 2;
   bool shuffleWinnings = true;
@@ -23,7 +23,7 @@ struct GameState {
   std::vector<int> victors;
   std::vector<int> casualties;
   std::vector<std::vector<Card>> hands;
-  std::vector<std::deque<Card>> playerdecks;
+  std::vector<std::deque<Card>> decks;
   std::vector<PlayerController*> players;
   std::vector<Card> table;
 };

@@ -19,7 +19,7 @@ auto sWar::Collect(GameState& state) -> GameState& {
         /*cardCnt: */ static_cast<int>(state.table.size()),
         /*players: */ {state.victors.front()},
         /*cards: */ state.table,
-        /*remainingCards: */ static_cast<int>(state.playerdecks.at(i).size())});
+        /*remainingCards: */ static_cast<int>(state.decks.at(i).size())});
   }
   if (state.shuffleWinnings) {
     std::shuffle(state.table.begin(), state.table.end(), state.g);
@@ -27,7 +27,7 @@ auto sWar::Collect(GameState& state) -> GameState& {
   std::move(
     state.table.begin(),
     state.table.end(),
-    std::back_inserter(state.playerdecks.at(state.victors.front())));
+    std::back_inserter(state.decks.at(state.victors.front())));
   state.victors.clear();
   state.table.clear();
   state.nextState = Draw;

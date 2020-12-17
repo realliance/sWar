@@ -9,6 +9,13 @@
 #include "statefunctions.h"
 
 auto sWar::Battle(GameState& state) -> GameState& {
+  for (const auto& hand : state.hands) {
+    if (hand.empty()) {
+      state.nextState = GameEnd;
+      return state;
+    }
+  }
+
   Card highest(0);
   for (int i = 0; i < state.playerCnt; i++) {
     auto card = state.players.at(i)->RetrieveCard();

@@ -40,16 +40,21 @@ auto sWar::StateController(const GameSettings& settings) -> void {
   int id = threadIndex++;
   shouldHalt[id] = false;
 
-  state.decks = settings.decks;
+  state.deckCnt = settings.deckCnt;
   state.playerCnt = static_cast<size_t>(settings.seatControllers.size());
   state.shuffleWinnings = settings.shuffleWinnings;
+
+  if (settings.seatControllers.size() < 2) {
+    std::cerr << "Not Enough Players: " << settings.seatControllers.size() << std::endl;
+    return;
+  }
 
   for (const auto& controllerName : settings.seatControllers) {
     auto* controller = GetController(controllerName);
     state.players.push_back(controller);
     if (controller == nullptr) {
       std::cerr << "No such Controller: " << controllerName << std::endl;
-      throw std::runtime_error("NO SUCH CONTROLLER");
+      return;
     }
   }
 
@@ -65,6 +70,7 @@ auto sWar::StateController(const GameSettings& settings) -> void {
   state.nextState = GameStart;
 
   while (state.nextState != GameEnd && !shouldHalt[id]) {
+    // std::cout << state << std::endl;
     state.prevState = state.currState;
     state.currState = state.nextState;
     state = state.nextState(state);

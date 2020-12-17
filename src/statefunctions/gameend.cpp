@@ -12,13 +12,13 @@ auto sWar::GameEnd(GameState& state) -> GameState& {
   std::vector<int> winners;
   size_t winnings = 0;
   for (int i = 0; i < state.playerCnt; i++) {
-    if ((state.hands.at(i).size() + state.playerdecks.at(i).size()) == winnings) {
+    if ((state.hands.at(i).size() + state.decks.at(i).size()) == winnings) {
       winners.push_back(i);
       continue;
     }
-    if ((state.hands.at(i).size() + state.playerdecks.at(i).size()) > winnings) {
+    if ((state.hands.at(i).size() + state.decks.at(i).size()) > winnings) {
       winners.clear();
-      winnings = (state.hands.at(i).size() + state.playerdecks.at(i).size());
+      winnings = (state.hands.at(i).size() + state.decks.at(i).size());
       winners.push_back(i);
     }
   }

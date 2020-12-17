@@ -10,15 +10,14 @@ auto operator<<(std::ostream& os, const Event& e) -> std::ostream& {
   os << "{type: " << EventTypeToStr(e.type);
   os << ", playerCnt: " << e.playerCnt;
   os << ", cardCnt: " << e.cardCnt;
-  os << "players: " << std::endl;
+  os << ", players: [";
   for (const auto& player : e.players) {
-    os << "player[" << player << "], ";
+    os << player;
   }
-  os << std::endl;
-  os << ", cards: [";
+  os << "], cards: [";
   for (const auto card : e.cards) {
     os << card.toStr() << ", ";
   }
-  os << "remainingCards: " << e.remainingCards << "}";
+  os << "], remainingCards: " << static_cast<int>(e.remainingCards) << "}";
   return os;
 }
