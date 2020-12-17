@@ -8,6 +8,10 @@
 #include "statefunctions.h"
 
 auto sWar::Surrender(GameState& state) -> GameState& {
+  if (state.victors.empty()) {
+    state.nextState = GameEnd;
+    return state;
+  }
   int winnings = state.table.size() / (state.victors.size());
   for (const auto& victor : state.victors) {
     std::move(

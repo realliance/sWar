@@ -13,6 +13,7 @@
 #include <highbot.h>
 #include <lowbot.h>
 #include <randombot.h>
+#include <duelist.h>
 
 using sWar::StartGame, sWar::GameSettings, sWar::RegisterController;
 
@@ -26,6 +27,10 @@ auto main() -> int {
   }, "HighBot");
 
   RegisterController([](){
+    return new DuelingBot();
+  }, "DuelingBot");
+
+  RegisterController([](){
     return new LowBot();
   }, "LowBot");
 
@@ -33,7 +38,7 @@ auto main() -> int {
     return new RandomBot();
   }, "RandomBot");
 
-  std::vector<std::string> players = {"RandomBot","HighBot","LowBot"};
+  std::vector<std::string> players = {"RandomBot","HighBot","LowBot","DuelingBot"};
 
   const int iterations = 100000;
 

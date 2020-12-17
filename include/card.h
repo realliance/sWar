@@ -7,6 +7,7 @@ namespace sWar {
 class Card {
  public:
   explicit Card(uint8_t c) : c(c) {}
+  Card() = default;
 
   // LSB aligned
   // SUIT_2, ACE_1, PIECE_4
