@@ -29,6 +29,4 @@ auto Draw(GameState& state) -> GameState&;
 
 auto GameEnd(GameState& state) -> GameState&;
 
-auto Error(GameState& state) -> GameState&;
-
 }  // namespace sWar

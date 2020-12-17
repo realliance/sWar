@@ -49,7 +49,7 @@ auto sWar::StateController(const GameSettings& settings) -> void {
     state.players.push_back(controller);
     if (controller == nullptr) {
       std::cerr << "No such Controller: " << controllerName << std::endl;
-      Error(state);
+      throw std::runtime_error("NO SUCH CONTROLLER");
     }
   }
 

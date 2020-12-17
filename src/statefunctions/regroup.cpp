@@ -18,16 +18,15 @@ auto sWar::Regroup(GameState& state) -> GameState& {
     int numSoldiers = availiableSoldiers > state.handsize ? state.handsize : state.playerdecks.at(victor).size();
     std::move(
       state.playerdecks.at(victor).begin(),
-      state.playerdecks.at(victor).begin() + state.handsize,
+      state.playerdecks.at(victor).begin() + numSoldiers,
       reinforcements.begin());
     state.playerdecks.at(victor).erase(
       state.playerdecks.at(victor).begin(),
-      state.playerdecks.at(victor).begin() + state.handsize);
+      state.playerdecks.at(victor).begin() + numSoldiers);
 
     state.hands.at(victor).insert(
       state.hands.at(victor).begin(),
-      reinforcements.begin()
-      ,reinforcements.end());
+      reinforcements.begin(), reinforcements.end());
     state.players.at(victor)->ReceiveEvent(Event{
       /*type: */ Event::Draw,
       /*playerCnt: */ 1,

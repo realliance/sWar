@@ -5,9 +5,11 @@ target_sources(swar
     "${DIR}/statefunctions/collect.cpp"
     "${DIR}/statefunctions/declaration.cpp"
     "${DIR}/statefunctions/draw.cpp"
-    "${DIR}/statefunctions/error.cpp"
+    "${DIR}/statefunctions/duel.cpp"
     "${DIR}/statefunctions/gameend.cpp"
     "${DIR}/statefunctions/gamestart.cpp"
+    "${DIR}/statefunctions/regroup.cpp"
+    "${DIR}/statefunctions/surrender.cpp"
 
     "${DIR}/card.cpp"
     "${DIR}/controllermanager.cpp"

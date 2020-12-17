@@ -6,6 +6,7 @@ include(ProcessorCount)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 option(PACKAGE_TESTS "Build the tests" OFF)
+option(PACKAGE_TOOLS "Build the tools" ON)
 option(USE_CLANG_TIDY "Use Clang Tidy" OFF)
 option(CI_CLANG_FORMAT_FLAGS "Use CI Clang Format Flags" OFF)
 
@@ -15,6 +16,11 @@ if(PACKAGE_TESTS)
   enable_testing()
   include(GoogleTest)
   add_subdirectory(${swar_SOURCE_DIR}/tests)
+endif()
+
+if(PACKAGE_TOOLS)
+  enable_testing()
+  add_subdirectory(${swar_SOURCE_DIR}/driver)
 endif()
 
 add_library(swar SHARED)

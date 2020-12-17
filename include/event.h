@@ -10,9 +10,7 @@ namespace sWar {
 struct Event {
   enum Type {
     Draw,
-    PlayCard,
     DeclarationOfWar,
-    War,
     Victory,
     GameStart,
     GameEnd
@@ -29,12 +27,8 @@ inline auto EventTypeToStr(Event::Type s) -> std::string {
   switch (s) {
     case Event::Draw:
       return "Draw";
-    case Event::PlayCard:
-      return "PlayCard";
     case Event::DeclarationOfWar:
       return "DeclarationOfWar";
-    case Event::War:
-      return "War";
     case Event::Victory:
       return "Victory";
     case Event::GameStart:

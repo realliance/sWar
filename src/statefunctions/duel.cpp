@@ -1,12 +1,9 @@
-#include <stddef.h>
-
 #include <algorithm>
-#include <deque>
+#include <ext/alloc_traits.h>
 #include <memory>
 #include <vector>
 
 #include "card.h"
-#include "event.h"
 #include "gamestate.h"
 #include "playercontroller.h"
 #include "statefunctions.h"
