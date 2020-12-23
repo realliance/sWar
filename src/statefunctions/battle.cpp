@@ -29,6 +29,8 @@ auto sWar::Battle(GameState& state) -> GameState& {
     }
 
     if (!found) {
+      std::cerr << "Warning: " << state.players.at(i)->Name()
+                << " Sent Invalid Card! in Battle: " << card.toStr() << std::endl;
       card = state.hands.at(i).front();
     }
 

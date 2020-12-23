@@ -30,8 +30,7 @@ auto RandomBot::RetrieveCard() -> Card {
 
 auto RandomBot::RandomCard() -> Card {
   if (hand.empty()) {
-    // We can try lmao
-    return Card(Card::ACE_OF_SPADES);
+    return Card(Card::ERROR);
   }
   Card random = hand.front();
   hand.erase(

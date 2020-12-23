@@ -5,6 +5,8 @@ target_sources(swar
   "${DIR}/duelist.h"
   "${DIR}/highbot.cpp"
   "${DIR}/highbot.h"
+  "${DIR}/highclass.cpp"
+  "${DIR}/highclass.h"
   "${DIR}/lowbot.cpp"
   "${DIR}/lowbot.h"
   "${DIR}/randombot.cpp"

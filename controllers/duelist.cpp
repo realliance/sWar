@@ -33,8 +33,7 @@ auto DuelingBot::RetrieveCard() -> Card {
 
 auto DuelingBot::PickCard() -> Card {
   if (hand.empty()) {
-    // We can try lmao
-    return Card(Card::ACE_OF_SPADES);
+    return Card(Card::ERROR);
   }
   if (hand.size() == 1) {
     auto card = hand.back();

@@ -30,8 +30,7 @@ auto HighBot::RetrieveCard() -> Card {
 
 auto HighBot::TopCard() -> Card {
   if (hand.empty()) {
-    // We can try lmao
-    return Card(Card::ACE_OF_SPADES);
+    return Card(Card::ERROR);
   }
   Card highest = hand.front();
   for (const auto& card : hand) {

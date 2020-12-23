@@ -24,6 +24,8 @@ auto sWar::Duel(GameState& state) -> GameState& {
     }
 
     if (!found) {
+      std::cerr << "Warning: " << state.players.at(combatant)->Name()
+                << " Sent Invalid Card in Duel!: " << card.toStr() << std::endl;
       card = state.hands.at(combatant).front();
     }
 

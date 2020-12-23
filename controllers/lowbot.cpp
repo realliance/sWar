@@ -30,8 +30,7 @@ auto LowBot::RetrieveCard() -> Card {
 
 auto LowBot::BottomCard() -> Card {
   if (hand.empty()) {
-    // We can try lmao
-    return Card(Card::ACE_OF_SPADES);
+    return Card(Card::ERROR);
   }
   Card lowest = hand.front();
   for (const auto& card : hand) {
