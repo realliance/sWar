@@ -14,7 +14,6 @@ auto HighBot::ReceiveEvent(Event e) -> void {
       hand.insert(hand.begin(), e.cards.begin(), e.cards.end());
       return;
     case Event::DeclarationOfWar:
-      hand.clear();
       return;
     case Event::Victory:
       return;

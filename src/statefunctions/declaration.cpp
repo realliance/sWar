@@ -10,21 +10,27 @@
 
 auto sWar::Declaration(GameState& state) -> GameState& {
   for (const auto& victor : state.victors) {
-    state.table.insert(
-      state.table.begin(),
-      state.hands.at(victor).begin(),
-      state.hands.at(victor).end());
-    state.hands.at(victor).clear();
-    if (state.decks.at(victor).size() < 2) {
+    if (state.hands.at(victor).empty()) {
       state.casualties.push_back(victor);
-      if (state.decks.at(victor).empty()) {
-        continue;
-      }
+      continue;
     }
+
+    if (state.decks.at(victor).size() <= 3) {
+      state.table.insert(
+        state.table.begin(),
+        state.decks.at(victor).begin(),
+        state.decks.at(victor).end());
+      state.decks.at(victor).clear();
+      continue;
+    }
+
     state.table.insert(
       state.table.begin(),
-      state.decks.at(victor).front());
-    state.decks.at(victor).pop_front();
+      state.decks.at(victor).begin(),
+      state.decks.at(victor).begin() + 3);
+    state.decks.at(victor).erase(
+      state.decks.at(victor).begin(),
+      state.decks.at(victor).begin() + 3);
   }
   for (const auto& casuality : state.casualties) {
     state.victors.erase(

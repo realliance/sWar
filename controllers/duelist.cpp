@@ -15,7 +15,6 @@ auto DuelingBot::ReceiveEvent(Event e) -> void {
       return;
     case Event::DeclarationOfWar:
       dueling = true;
-      hand.clear();
       return;
     case Event::Victory:
       return;
