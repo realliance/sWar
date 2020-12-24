@@ -18,8 +18,9 @@ class ScoreRecorder : public PlayerController {
   auto ReceiveEvent(Event e) -> void;
   auto RetrieveCard() -> Card { return inst->RetrieveCard(); }
   auto Name() -> std::string { return inst->Name(); }
-  static std::map<int, int> Wins;
+  static std::map<std::string, int> Wins;
 
  private:
-  PlayerController* inst;
+  int playerID = -1;
+  PlayerController* inst = nullptr;
 };

@@ -5,15 +5,21 @@
 #include "event.h"
 #include "playercontroller.h"
 
-std::map<int, int> ScoreRecorder::Wins;
+std::map<std::string, int> ScoreRecorder::Wins;
 
 auto ScoreRecorder::ReceiveEvent(Event e) -> void {
+  if (e.type == Event::GameStart) {
+    playerID = e.players.front();
+  }
   if (e.type == Event::GameEnd) {
     for (const auto& player : e.players) {
-      if (Wins.contains(player)) {
-        Wins.at(player)++;
+      if (player != playerID) {
+        continue;
+      }
+      if (Wins.contains(inst->Name())) {
+        Wins.at(inst->Name())++;
       } else {
-        Wins[player] = 1;
+        Wins[inst->Name()] = 1;
       }
     }
   }
